@@ -14,6 +14,8 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.Objects;
 
+import org.eclipse.collections.api.tuple.Tuple;
+
 /**
  * A Pair is a container that holds two related objects. It is the equivalent of an Association in Smalltalk, or an
  * implementation of Map.Entry in the JDK.
@@ -21,45 +23,7 @@ import java.util.Objects;
  * An instance of this interface can be created by calling Tuples.pair(Object, Object) or Tuples.twin(Object, Object).
  */
 public interface Pair<T1, T2>
-        extends Serializable, Comparable<Pair<T1, T2>>
-{
-    T1 getOne();
+        extends Tuple<T1, T2, Void>{
 
-    T2 getTwo();
-
-    void put(Map<? super T1, ? super T2> map);
-
-    Map.Entry<T1, T2> toEntry();
-
-    /**
-     * Method used to swap the elements of pair.
-     *
-     * <pre>e.g.
-     * Pair&lt;String, Integer&gt; pair = Tuples.pair("One", 1);
-     * Pair&lt;Integer, String&gt; swappedPair = pair.swap();
-     * </pre>
-     *
-     * @since 6.0
-     */
-    Pair<T2, T1> swap();
-
-    /*
-     * Returns true if value of getOne() is equal to value of getTwo().
-     *
-     * @since 11.0
-     */
-    default boolean isEqual()
-    {
-        return Objects.equals(this.getOne(), this.getTwo());
-    }
-
-    /*
-     * Returns true if value of getOne() is the same instance as the value of getTwo().
-     *
-     * @since 11.0
-     */
-    default boolean isSame()
-    {
-        return this.getOne() == this.getTwo();
-    }
-}
+        Map.Entry<T1,T2> toEntry();
+        }
